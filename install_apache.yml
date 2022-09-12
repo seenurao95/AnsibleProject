@@ -4,12 +4,12 @@
   become: true
   tasks: 
 
-  - name: update repository index
-    yum:
-            update_cache: yes
-
-
-  - name: install apache2 package
-    yum:
-            name: httpd
+  - name: install apache and php package
+    package:
+            name: 
+                - "{{ httpd }}"
+                - "{{ tmux }}"
+                - "{{ php }}"         
             state: latest
+            update_cache: yes
+    
