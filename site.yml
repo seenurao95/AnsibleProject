@@ -19,6 +19,21 @@
                 state: latest
                 update_cache: yes
 
+- hosts: all
+  become: true
+  tasks:
+          - name: create simone user
+            tags: always
+            user:
+                    name: simone
+                    groups: root
+          
+           - name: add ssh key for simone
+             tags: always
+             authorized_key:
+                     user: simone
+                     key: ""
+                    
     
 - hosts: workstations
   become: true
@@ -57,7 +72,31 @@
                    dest: /var/www/html/index.html
                    owner: root
                    group: root
-                   mode: 0644  
+                   mode: 0644
+
+          - name: change e-mail address for admin
+            tags: apache, centos, httpd
+            lineinfile:
+                    path: /etc/httpd/conf/httpd.conf
+                    regexp: '^ServerAdmin'
+                    line: ServerAdmin somebody@somewhere.net
+            register: httpd
+
+          - name: restart httpd (CentOS)
+            tags: apache,centos,httpd
+            service:
+                    name: httpd
+                    state: restarted
+            when: httpd.changed
+
+          - name: start httpd (CentOS)
+            tags: httpd, apache2, apache
+            ansible.builtin.systemd:
+                    name: httpd
+                    enabled: yes
+                    state: started
+            when: ansible_distribution == "CentOS"
+
 
 - hosts: db_servers
   become: true
