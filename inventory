@@ -3,3 +3,6 @@
 
 [db_servers]
 192.168.0.109 httpd=httpd tmux=tmux php=php
+
+[workstations]
+192.168.0.126 httpd=httpd tmux=tmux php=php

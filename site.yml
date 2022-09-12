@@ -4,20 +4,38 @@
   become: true
   tasks: 
 
-  - name: install updates
-    yum:
-            update_only: yes
-            update_cache: yes
-    when: ansible_distribution == "CentOS"
+         - name: install updates
+           yum:
+                update_only: yes
+                update_cache: yes
+           when: ansible_distribution == "CentOS"
 
-  - name: install apache and php package
-    package:
-            name: 
-                - "{{ httpd }}"
-                - "{{ tmux }}"
-                - "{{ php }}"         
-            state: latest
-            update_cache: yes
+         - name: install apache and php package
+           package:
+                name: 
+                    - "{{ httpd }}"
+                    - "{{ tmux }}"
+                    - "{{ php }}"         
+                state: latest
+                update_cache: yes
+
+    
+- hosts: workstations
+  become: true
+  tasks:
+          - name: install unzip
+            package: 
+                name: unzip
+
+          - name: install terraform
+            unarchive:
+                src: https://releases.hashicorp.com/terraform/1.2.9/terraform_1.2.9_linux_arm64.zip
+                dest: /usr/local/bin
+                remote_src: yes
+                mode: 0755
+                owner: root
+                group: root
+
 
 - hosts: web_servers
   become: true
@@ -27,8 +45,8 @@
             tags: centos, web servers, httpd, apache
             package:
                    name:
-                           - httpd
-                           - php
+                       - httpd
+                       - php
                    state: latest
             when: ansible_distribution == "CentOS"
 
