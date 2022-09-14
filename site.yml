@@ -32,7 +32,8 @@
              tags: always
              authorized_key:
                      user: simone
-                     key: ""
+                     key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDACPDJ+Jtc0Zt3XSWuuWyg0x0pGyDQ4jaGASul8QWTSgSPmpLV1HMP36EmsPPIhUaUojbxXFY7VndzzbJMoVKG9zi9vwRl8lMhFdoFjxcY3UapqxruQo59rCzUXRJld1G9Peo5ChClbRyIdKWcTdVxfk3wuGWa1NFdi9uweJQhUly6ydTBP2njN9IjuKX5+sdfK5QVrqgfFMQy5RWuV00P6rEqGbyjmzNhO/l+WS/3wb7EBL18tOk1whgWakwEQvUJZNCnZvdEdEnGhoCbTzkKPqD3TOSAqTD/pOv7K24hd71hXVtX4LfgTVtk/Q+2Y1xopOl4Rj5F5wSwxezDRHINZGXYUBF7HT3pVOBjNvig/hPAXei5uhLN1bDD0KbCVSo+axrM/9FnNBPlRJVFgAeVJ8mOZXSlYdVsRadycwXldjIiZjOrywAQKg2xAykSnPEVf3VJuni2mq2FKYuVOaIk1h1/RwUeTY8N/zzJDtVmqlSZwupcDw3DJEFvhTTWaFs= 
+"
                     
     
 - hosts: workstations
